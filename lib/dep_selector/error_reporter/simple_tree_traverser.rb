@@ -81,6 +81,7 @@ module DepSelector
         curr_pkg[version_constraint].each do |curr_pkg_ver|
           curr_path.push(curr_pkg_ver)
           curr_pkg_ver.dependencies.each do |dep|
+            next if curr_pkg.name == dep.package.name
             paths_to_pkg(dep_graph, dep.package, dep.constraint, target_pkg, curr_path, all_paths)
           end
           curr_path.pop
